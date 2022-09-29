@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopApi.Contracts;
+using ShopApi.Entities.Models;
 
 namespace ShopApi.Web.Api.Controllers;
 
@@ -13,26 +14,18 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILoggerManager _logger;
+    private readonly IRepositoryManager _repositoryManager;
 
 
-    public WeatherForecastController(ILoggerManager logger)
+    public WeatherForecastController(ILoggerManager logger, IRepositoryManager repositoryManager)
     {
         _logger = logger;
+        _repositoryManager = repositoryManager;
     }
     
-    public IEnumerable<WeatherForecast> Get()
+    public IEnumerable<Company> Get()
     {
-        _logger.LogInfo("Вот информационное сообщение от нашего контроллера значений.");
-        _logger.LogDebug("Вот отладочное сообщение от нашего контроллера значений.");
-        _logger.LogWarn("Вот сообщение предупреждения от нашего контроллера значений.");
-        _logger.LogError("Вот сообщение об ошибке от нашего контроллера значений.");
-        
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+        var result = _repositoryManager.Company.FindAll(false);
+        return result.AsEnumerable();
     }
 }
