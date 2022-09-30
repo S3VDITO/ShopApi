@@ -23,9 +23,9 @@ public class WeatherForecastController : ControllerBase
         _repositoryManager = repositoryManager;
     }
     
-    public IEnumerable<Company> Get()
+    public IEnumerable<Product> Get()
     {
-        var result = _repositoryManager.Company.FindAll(false);
+        var result = _repositoryManager.Product.FindAll(false);
         return result.AsEnumerable();
     }
 }

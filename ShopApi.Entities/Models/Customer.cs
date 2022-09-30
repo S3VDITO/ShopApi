@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopApi.Entities.Models;
 
-public class Employee
+public class Customer
 {
-    [Column("EmployeeId")] public Guid Id { get; set; }
+    [Column("CustomerId")] public Guid Id { get; set; }
 
     [Required(ErrorMessage = "Employee name is a required field.")]
     [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")]
@@ -14,10 +14,10 @@ public class Employee
     [Required(ErrorMessage = "Age is a required field.")]
     public int Age { get; set; }
 
-    [Required(ErrorMessage = "Position is a required field.")]
-    [MaxLength(20, ErrorMessage = "Maximum length for the Position is 20 characters.")]
-    public string Position { get; set; }
+    [Required(ErrorMessage = "Address is a required field.")]
+    [MaxLength(255, ErrorMessage = "Address length for the Position is 255 characters.")]
+    public string Address { get; set; }
 
-    [ForeignKey(nameof(Company))] public Guid CompanyId { get; set; }
-    public Company Company { get; set; }
+    [ForeignKey(nameof(Product))] public Guid ProductId { get; set; }
+    public Product Product { get; set; }
 }

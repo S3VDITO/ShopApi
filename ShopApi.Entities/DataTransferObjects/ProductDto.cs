@@ -1,8 +1,8 @@
 ﻿namespace ShopApi.Entities.DataTransferObjects;
 
-public class CompanyDto
+public class ProductDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public string FullAddress { get; set; }
+    public string Description { get; set; }
 }

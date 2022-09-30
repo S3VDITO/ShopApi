@@ -16,8 +16,8 @@ public class CsvOutputFormatter : TextOutputFormatter
 
     protected override bool CanWriteType(Type type)
     {
-        if (typeof(CompanyDto).IsAssignableFrom(type) ||
-            typeof(IEnumerable<CompanyDto>).IsAssignableFrom(type))
+        if (typeof(ProductDto).IsAssignableFrom(type) ||
+            typeof(IEnumerable<ProductDto>).IsAssignableFrom(type))
         {
             return base.CanWriteType(type);
         }
@@ -29,23 +29,23 @@ public class CsvOutputFormatter : TextOutputFormatter
     {
         var response = context.HttpContext.Response;
         var buffer = new StringBuilder();
-        if (context.Object is IEnumerable<CompanyDto>)
+        if (context.Object is IEnumerable<ProductDto>)
         {
-            foreach (var company in (IEnumerable<CompanyDto>)context.Object)
+            foreach (var company in (IEnumerable<ProductDto>)context.Object)
             {
                 FormatCsv(buffer, company);
             }
         }
         else
         {
-            FormatCsv(buffer, (CompanyDto)context.Object);
+            FormatCsv(buffer, (ProductDto)context.Object);
         }
 
         await response.WriteAsync(buffer.ToString());
     }
 
-    private static void FormatCsv(StringBuilder buffer, CompanyDto company)
+    private static void FormatCsv(StringBuilder buffer, ProductDto product)
     {
-        buffer.AppendLine($"{company.Id},\"{company.Name},\"{company.FullAddress}\"");
+        buffer.AppendLine($"{product.Id},\"{product.Name}\",\"{product.Description}\"");
     }
 }

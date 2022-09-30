@@ -2,7 +2,7 @@
 
 namespace ShopApi.Entities.DataTransferObjects;
 
-public class EmployeeForManipulationDto
+public class CustomerForManipulationDto
 {
     [Required(ErrorMessage = "Employee name is a required field.")]
     [MaxLength(30, ErrorMessage = "Maximum length for the Name is 30 characters.")]
@@ -11,5 +11,5 @@ public class EmployeeForManipulationDto
     public int Age { get; set; }
     [Required(ErrorMessage = "Position is a required field.")]
     [MaxLength(20, ErrorMessage = "Maximum length for the Position is 20 characters.")]
-    public string Position { get; set; }
+    public string Address { get; set; }
 }

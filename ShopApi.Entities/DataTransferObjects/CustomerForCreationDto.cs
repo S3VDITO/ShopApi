@@ -2,6 +2,6 @@
 
 namespace ShopApi.Entities.DataTransferObjects;
 
-public class EmployeeForUpdateDto : EmployeeForManipulationDto
+public class CustomerForCreationDto : CustomerForManipulationDto
 {
 }
